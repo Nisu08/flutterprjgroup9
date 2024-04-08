@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterprjgroup9/products.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,25 +41,46 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+          decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/cover.jpg'), fit: BoxFit.cover ),
+          ),
+        child: Center(child:
+        Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Welcome to Literary Lounge ',
-              style: TextStyle(fontWeight: FontWeight.bold),
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(10), // Adjust the value as needed
+              child: Text(
+                'Welcome to Literary Lounge',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
             ),
-            const Image(
-              image: AssetImage('images/logo.jpg'),
+            Container(
+              width: 200, // Desired width
+              height: 200, // Desired height
+              padding: const EdgeInsets.all(10),
+              child: const Image(
+                image: AssetImage('images/logo.png'),
+              ),
             ),
-            const SizedBox(height: 30),
-            CupertinoButton.filled(
-              onPressed: () {},
-              child: const Text('Go to Products'),
-            ),
+         const SizedBox(height: 20),
+             CupertinoButton.filled(
+              onPressed: () {
+               Navigator.push(
+                   context,
+                 MaterialPageRoute(builder: (context) => Products()),
+                 );
+             },
+             child: const Text('Go to Products'),
+           ),
           ],
-        ),
       ),
+      ),
+    ),
     );
   }
 }
