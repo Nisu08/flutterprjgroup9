@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutterprjgroup9/product_details.dart';
-
+import 'package:flutterprjgroup9/checkout.dart';
 import 'book.dart';
 
 class Products extends StatelessWidget {
@@ -112,7 +112,7 @@ class Products extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => Products()),
+                                      MaterialPageRoute(builder: (context) => Checkout()),
                                     );
                                   },
                                   child: const Text('Buy Now'),
