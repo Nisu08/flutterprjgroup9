@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'success.dart';
 
 class Checkout extends StatefulWidget {
+  final double totalAmount;
+  const Checkout({Key? key, required this.totalAmount}) : super(key: key);
+
   @override
   _CheckoutState createState() => _CheckoutState();
+
 }
 
 class _CheckoutState extends State<Checkout> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +28,12 @@ class _CheckoutState extends State<Checkout> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Center(
+                child: Text(
+                  'Total Amount: \$${widget.totalAmount.toStringAsFixed(2)}',
+                  style: const TextStyle(fontSize: 24),
+                ),
+              ),
               Text(
                 'User Details',
                 style: TextStyle(

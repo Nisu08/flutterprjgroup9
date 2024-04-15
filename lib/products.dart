@@ -112,7 +112,7 @@ class Products extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => Checkout()),
+                                      MaterialPageRoute(builder: (context) => Checkout(totalAmount: booksList[index].price)),
                                     );
                                   },
                                   child: const Text('Buy Now'),
