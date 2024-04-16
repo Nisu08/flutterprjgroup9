@@ -36,10 +36,14 @@ class _ProductDetailState extends State<ProductDetail> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Product Detail'),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
       ),
       body: ListView(
         children: [
-          Center(
+      Container(
+      margin: const EdgeInsets.only(top: 10.0),
+          child: Center(
             child: Hero(
               tag: widget.book.image,
               child: Image.asset(
@@ -50,6 +54,7 @@ class _ProductDetailState extends State<ProductDetail> {
               ),
             ),
           ),
+      ),
           const SizedBox(height: 15),
           Center(
             child: Container(
@@ -99,16 +104,23 @@ class _ProductDetailState extends State<ProductDetail> {
                 style: TextStyle(fontSize: 18),
               ),
               IconButton(
-                icon: const Icon(Icons.remove),
+                icon: const Icon(
+              Icons.remove_circle,
+            color: Colors.teal,
+               ),
                 onPressed: decrementQuantity,
-              ),
+            ),
               Text(
                 quantity.toString(),
                 style: const TextStyle(fontSize: 18),
               ),
               IconButton(
-                icon: const Icon(Icons.add),
+                icon: const Icon(
+                  Icons.add_circle,
+                  color: Colors.teal,
+                ),
                 onPressed: incrementQuantity,
+                color: Colors.teal,
               ),
             ],
           ),
@@ -131,6 +143,10 @@ class _ProductDetailState extends State<ProductDetail> {
                     ),
                   );
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                ),
                 child: const Text('Buy Now'),
               ),
             ),

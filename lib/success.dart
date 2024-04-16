@@ -5,7 +5,9 @@ class Success extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Purchase Successful'),
+        title: const Text('Purchase Successful'),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
       ),
       body: Center(
         child: Column(
@@ -23,6 +25,10 @@ class Success extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => Products()),
                 );
               },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              ),
               child: Text('Back to Products'),
             ),
           ],

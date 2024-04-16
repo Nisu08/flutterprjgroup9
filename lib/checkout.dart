@@ -18,7 +18,8 @@ class _CheckoutState extends State<Checkout> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
         title: Text('Checkout'),
       ),
       body: SingleChildScrollView(
@@ -228,6 +229,10 @@ class _CheckoutState extends State<Checkout> {
                       );
                     }
                   },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
+                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                  ),
                   child: Text('Confirm Purchase'),
                 ),
               ),

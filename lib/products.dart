@@ -6,26 +6,25 @@ import 'package:flutterprjgroup9/checkout.dart';
 import 'book.dart';
 
 class Products extends StatelessWidget {
+  const Products({super.key});
+
 
   @override
   Widget build(BuildContext context) {
+    const primaryColor = Colors.teal;
+
     List<Book> booksList = [];
-    Book book1 = Book(1,'The Power of Positive Thinking','Dr. Norman Vincent Peale','The Power of Positive Thinking has helped men and women around the world to achieve fulfillment in their lives.', 25.00, 'book1.jpg');
+    Book book1 = Book(1,'The Power of Positive Thinking','Dr. Norman Peale','The Power of Positive Thinking has helped men and women around the world to achieve fulfillment in their lives.', 25.00, 'book1.jpg');
     Book book2 = Book(2,'Think And Grow Rich','Napoleon Hill','The bestselling success book of all time—now revised and updated for the 21st century.', 15.00, 'book2.jpg');
     Book book3 = Book(2,'Think And Grow Rich','Napoleon Hill','The bestselling success book of all time—now revised and updated for the 21st century.', 15.00, 'book2.jpg');
     booksList.addAll({book1, book2, book3});
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Literary Lounge'),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
+        title: const Text('Literary Lounge'),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/cover.jpg'), // Change the path to your background image
-            fit: BoxFit.cover,
-          ),
-        ),
+      body: Center(
         child: ListView.builder(
           padding: const EdgeInsets.all(8),
           itemCount: booksList.length,
@@ -41,9 +40,9 @@ class Products extends StatelessWidget {
               },
               child: Card(
                 elevation: 4,
-                color: Colors.white,
+                surfaceTintColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,13 +51,13 @@ class Products extends StatelessWidget {
                       tag: booksList[index].image,
                       child: Container(
                         width: 125,
-                        height: 200,
+                        height: 150,
                         margin: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(10)),
                           image: DecorationImage(
-                            image: AssetImage("images/" + booksList[index].image),
-                            fit: BoxFit.cover,
+                            image: AssetImage("images/${booksList[index].image}"),
+                           // fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -82,19 +81,19 @@ class Products extends StatelessWidget {
 
                           const SizedBox(height: 5),
                           Text(
-                            'by: ${booksList[index].author}',
+                            'Author: ${booksList[index].author}',
                             style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
                           const SizedBox(height: 5),
-                          Text(
-                            '${booksList[index].description}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
+                          // Text(
+                          //   '${booksList[index].description}',
+                          //   style: const TextStyle(
+                          //     fontSize: 16,
+                          //   ),
+                          // ),
+                          // const SizedBox(height: 5),
                           Row(
                             children: [
                               SizedBox(height: 5),
@@ -108,13 +107,17 @@ class Products extends StatelessWidget {
                               ),
                               Container(
                                 padding: const EdgeInsets.all(10),
-                                child: ElevatedButton(
+                                  child: ElevatedButton(
                                   onPressed: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(builder: (context) => Checkout(totalAmount: booksList[index].price)),
                                     );
                                   },
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
+                                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                  ),
                                   child: const Text('Buy Now'),
                                 ),
                               ),

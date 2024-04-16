@@ -38,49 +38,47 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
         title: Text(widget.title),
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-          decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/cover.jpg'), fit: BoxFit.cover ),
+      body: Center(child:
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(10),
+            child: Text(
+              'Welcome to Literary Lounge',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
           ),
-        child: Center(child:
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(10), // Adjust the value as needed
-              child: Text(
-                'Welcome to Literary Lounge',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
+          const Image(
+              width: 200,
+              height: 200,
+              image: AssetImage('images/logo.png'),
             ),
-            Container(
-              width: 200, // Desired width
-              height: 200, // Desired height
-              padding: const EdgeInsets.all(10),
-              child: const Image(
-                image: AssetImage('images/logo.png'),
+          Container(
+            margin: const EdgeInsets.only(top: 10.0),
+            child : ElevatedButton(
+              //padding : const EdgeInsets.all(10),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
               ),
-            ),
-         const SizedBox(height: 20),
-             CupertinoButton.filled(
               onPressed: () {
-               Navigator.push(
-                   context,
-                 MaterialPageRoute(builder: (context) => Products()),
-                 );
-             },
-             child: const Text('Go to Products'),
-           ),
-          ],
-      ),
-      ),
-    ),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Products()),
+                );
+              },
+
+              child: const Text('Go to Products'),
+            ),
+          )
+        ],
+            ),
+            ),
     );
   }
 }
