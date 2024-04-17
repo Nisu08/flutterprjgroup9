@@ -206,6 +206,22 @@ class _CheckoutState extends State<Checkout> {
               const SizedBox(height: 10.0),
               TextFormField(
                 decoration: const InputDecoration(
+                  labelText: 'Expiry Date',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Expiry Date';
+                  }
+                  if (!RegExp(r'^(0[1-9]|1[0-2])[0-9]{4}$').hasMatch(value)) {
+                    return 'Please enter a valid Date in MMYYYY Format';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 10.0),
+              TextFormField(
+                decoration: const InputDecoration(
                   labelText: 'CVV',
                   border: OutlineInputBorder(),
                 ),

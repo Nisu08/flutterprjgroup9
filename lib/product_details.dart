@@ -11,9 +11,31 @@ class ProductDetail extends StatefulWidget {
   _ProductDetailState createState() => _ProductDetailState();
 }
 
-class _ProductDetailState extends State<ProductDetail> {
+class _ProductDetailState extends State<ProductDetail> with SingleTickerProviderStateMixin {
   int quantity = 1;
+  late AnimationController _animationCon;
+  late Animation<double> _scaleAnime;
 
+  @override
+  void initState() {
+    super.initState();
+    _animationCon = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+    _scaleAnime = Tween<double>(begin: 0.7, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationCon,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationCon.dispose();
+    super.dispose();
+  }
   void incrementQuantity() {
     setState(() {
       if (quantity < 10) quantity++;
@@ -45,13 +67,26 @@ class _ProductDetailState extends State<ProductDetail> {
           Container(
             margin: const EdgeInsets.only(top: 10.0),
             child: Center(
-              child: Hero(
-                tag: widget.book.image,
-                child: Image.asset(
-                  "images/${widget.book.image}",
-                  width: 200,
-                  height: 300,
-                  fit: BoxFit.cover,
+              child: GestureDetector(
+                onTap: () {
+                  _animationCon.forward(from: 0.0);
+                },
+                child: AnimatedBuilder(
+                  animation: _animationCon,
+                  builder: (context, child) {
+                    return Transform.scale(
+                      scale: _scaleAnime.value,
+                      child: Hero(
+                        tag: widget.book.image,
+                        child: Image.asset(
+                          "images/${widget.book.image}",
+                          width: 200,
+                          height: 300,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
