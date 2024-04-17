@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterprjgroup9/products.dart';
 
@@ -33,8 +32,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin{
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+
   @override
   void initState() {
     _controller = AnimationController(
@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage>
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,50 +58,51 @@ class _MyHomePageState extends State<MyHomePage>
         foregroundColor: Colors.white,
         title: Text(widget.title),
       ),
-      body: Center(child:
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(10),
-            child: Text(
-              'Welcome to Literary Lounge',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-          RotationTransition(
-            turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-            child: const Image(
-              width: 200,
-              height: 200,
-              image: AssetImage('images/logo.png'),
-            ),
-          ),
-
-          Container(
-            margin: const EdgeInsets.only(top: 10.0),
-            child : ElevatedButton(
-              //padding : const EdgeInsets.all(10),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                'Welcome to Literary Lounge',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              onPressed: () {
-                _controller.forward();
-                Future.delayed(const Duration(milliseconds: 100), () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Products()),
-                  );
-                });
-              },
+            ),
+            RotationTransition(
+              turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+              child: const Image(
+                width: 200,
+                height: 200,
+                image: AssetImage('images/logo.png'),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 10.0),
+              child: ElevatedButton(
+                //padding : const EdgeInsets.all(10),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.teal),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                ),
+                onPressed: () {
+                  _controller.forward();
+                  Future.delayed(const Duration(milliseconds: 100), () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Products()),
+                    );
+                  });
+                },
 
-              child: const Text('Go to Products'),
-            ),
-          )
-        ],
-            ),
-            ),
+                child: const Text('Go to Products'),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

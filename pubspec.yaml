@@ -60,7 +60,14 @@ flutter:
   assets:
     - images/book1.jpg
     - images/book2.jpg
-    - images/cover.jpg
+    - images/book3.jpg
+    - images/book4.jpg
+    - images/book5.jpg
+    - images/book6.jpg
+    - images/book7.jpg
+    - images/book8.jpg
+    - images/book9.jpg
+    - images/book10.jpg
     - images/logo.png
   # To add assets to your application, add an assets section, like this:
   # assets:

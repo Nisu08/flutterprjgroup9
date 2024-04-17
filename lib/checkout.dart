@@ -3,16 +3,15 @@ import 'success.dart';
 
 class Checkout extends StatefulWidget {
   final double totalAmount;
-  const Checkout({Key? key, required this.totalAmount}) : super(key: key);
+
+  const Checkout({super.key, required this.totalAmount});
 
   @override
-  _CheckoutState createState() => _CheckoutState();
-
+  State<Checkout> createState() => _CheckoutState();
 }
 
 class _CheckoutState extends State<Checkout> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +19,10 @@ class _CheckoutState extends State<Checkout> {
       appBar: AppBar(
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
-        title: Text('Checkout'),
+        title: const Text('Checkout'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -35,16 +34,16 @@ class _CheckoutState extends State<Checkout> {
                   style: const TextStyle(fontSize: 24),
                 ),
               ),
-              Text(
+              const Text(
                 'User Details',
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Full Name',
                   border: OutlineInputBorder(),
                 ),
@@ -58,9 +57,9 @@ class _CheckoutState extends State<Checkout> {
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email Address',
                   border: OutlineInputBorder(),
                 ),
@@ -68,15 +67,16 @@ class _CheckoutState extends State<Checkout> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email address';
                   }
-                  if (!RegExp(r'^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                  if (!RegExp(r'^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$')
+                      .hasMatch(value)) {
                     return 'Please enter a valid email address';
                   }
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Mobile Number',
                   border: OutlineInputBorder(),
                 ),
@@ -90,17 +90,17 @@ class _CheckoutState extends State<Checkout> {
                   return null;
                 },
               ),
-              SizedBox(height: 20.0),
-              Text(
+              const SizedBox(height: 20.0),
+              const Text(
                 'Address Details',
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Address Line 1',
                   border: OutlineInputBorder(),
                 ),
@@ -114,9 +114,9 @@ class _CheckoutState extends State<Checkout> {
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Address Line 2',
                   border: OutlineInputBorder(),
                 ),
@@ -130,9 +130,9 @@ class _CheckoutState extends State<Checkout> {
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'City',
                   border: OutlineInputBorder(),
                 ),
@@ -146,9 +146,9 @@ class _CheckoutState extends State<Checkout> {
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Province',
                   border: OutlineInputBorder(),
                 ),
@@ -162,9 +162,9 @@ class _CheckoutState extends State<Checkout> {
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Postal Code',
                   border: OutlineInputBorder(),
                 ),
@@ -172,23 +172,24 @@ class _CheckoutState extends State<Checkout> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a Postal Code';
                   }
-                  if (!RegExp(r'^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$').hasMatch(value)) {
+                  if (!RegExp(r'^[A-Za-z]\d[A-Za-z] ?\d[A-Za-z]\d$')
+                      .hasMatch(value)) {
                     return 'Please enter a valid Postal Code (e.g., N2N 2N2)';
                   }
                   return null;
                 },
               ),
-              SizedBox(height: 20.0),
-              Text(
+              const SizedBox(height: 20.0),
+              const Text(
                 'Payment Details',
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Card Number',
                   border: OutlineInputBorder(),
                 ),
@@ -202,9 +203,9 @@ class _CheckoutState extends State<Checkout> {
                   return null;
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'CVV',
                   border: OutlineInputBorder(),
                 ),
@@ -218,7 +219,7 @@ class _CheckoutState extends State<Checkout> {
                   return null;
                 },
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
@@ -230,10 +231,12 @@ class _CheckoutState extends State<Checkout> {
                     }
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.teal),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
                   ),
-                  child: Text('Confirm Purchase'),
+                  child: const Text('Confirm Purchase'),
                 ),
               ),
             ],

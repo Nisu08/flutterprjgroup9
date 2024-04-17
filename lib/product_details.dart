@@ -4,7 +4,8 @@ import 'book.dart';
 
 class ProductDetail extends StatefulWidget {
   final Book book;
-  const ProductDetail({Key? key, required this.book}) : super(key: key);
+
+  const ProductDetail({super.key, required this.book});
 
   @override
   _ProductDetailState createState() => _ProductDetailState();
@@ -41,20 +42,20 @@ class _ProductDetailState extends State<ProductDetail> {
       ),
       body: ListView(
         children: [
-      Container(
-      margin: const EdgeInsets.only(top: 10.0),
-          child: Center(
-            child: Hero(
-              tag: widget.book.image,
-              child: Image.asset(
-                "images/${widget.book.image}",
-                width: 200,
-                height: 300,
-                fit: BoxFit.cover,
+          Container(
+            margin: const EdgeInsets.only(top: 10.0),
+            child: Center(
+              child: Hero(
+                tag: widget.book.image,
+                child: Image.asset(
+                  "images/${widget.book.image}",
+                  width: 200,
+                  height: 300,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
-      ),
           const SizedBox(height: 15),
           Center(
             child: Container(
@@ -65,7 +66,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.left,
               ),
             ),
           ),
@@ -105,11 +106,11 @@ class _ProductDetailState extends State<ProductDetail> {
               ),
               IconButton(
                 icon: const Icon(
-              Icons.remove_circle,
-            color: Colors.teal,
-               ),
+                  Icons.remove_circle,
+                  color: Colors.teal,
+                ),
                 onPressed: decrementQuantity,
-            ),
+              ),
               Text(
                 quantity.toString(),
                 style: const TextStyle(fontSize: 18),
@@ -144,8 +145,10 @@ class _ProductDetailState extends State<ProductDetail> {
                   );
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.teal),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
                 ),
                 child: const Text('Buy Now'),
               ),
