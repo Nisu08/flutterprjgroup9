@@ -34,13 +34,24 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  late final Animation<double> _scaleanimation;
+  late final Animation<double> _rotationanimation;
 
   @override
   void initState() {
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
+    _scaleanimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    );
+    _rotationanimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_controller);
+    _controller.forward();
     super.initState();
   }
 
@@ -62,13 +73,23 @@ class _MyHomePageState extends State<MyHomePage>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                'Welcome to Literary Lounge',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ScaleTransition(
+              scale: _scaleanimation,
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Welcome to Literary Lounge',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
               ),
             ),
+            // const Padding(
+            //   padding: EdgeInsets.all(10),
+            //   child: Text(
+            //     'Welcome to Literary Lounge',
+            //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            //   ),
+            // ),
             RotationTransition(
               turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
               child: const Image(
