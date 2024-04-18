@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterprjgroup9/products.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late final Animation<double> _scaleanimation;
-  late final Animation<double> _rotationanimation;
+  bool _visible = true;
 
   @override
   void initState() {
@@ -47,10 +49,6 @@ class _MyHomePageState extends State<MyHomePage>
       parent: _controller,
       curve: Curves.easeInOut,
     );
-    _rotationanimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(_controller);
     _controller.forward();
     super.initState();
   }
@@ -73,35 +71,41 @@ class _MyHomePageState extends State<MyHomePage>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ScaleTransition(
-              scale: _scaleanimation,
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Welcome to Literary Lounge',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-              ),
+            AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return Transform.rotate(
+                  angle: _controller.value * 2 * pi,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Welcome to Literary Lounge',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                );
+              },
             ),
-            // const Padding(
-            //   padding: EdgeInsets.all(10),
-            //   child: Text(
-            //     'Welcome to Literary Lounge',
-            //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            //   ),
-            // ),
-            RotationTransition(
-              turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-              child: const Image(
-                width: 200,
-                height: 200,
-                image: AssetImage('images/logo.png'),
-              ),
+            AnimatedBuilder(
+              animation: _scaleanimation,
+              builder: (context, child) {
+                return Transform.scale(
+                  scale: _scaleanimation.value,
+                  child: SizedBox(
+                    width: 200,
+                    height: 200,
+                    child: Image(
+                      image: AssetImage('images/logo.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
             ),
             Container(
               margin: const EdgeInsets.only(top: 10.0),
               child: ElevatedButton(
-                //padding : const EdgeInsets.all(10),
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.teal),
@@ -109,15 +113,11 @@ class _MyHomePageState extends State<MyHomePage>
                       MaterialStateProperty.all<Color>(Colors.white),
                 ),
                 onPressed: () {
-                  _controller.forward();
-                  Future.delayed(const Duration(milliseconds: 100), () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Products()),
-                    );
-                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Products()),
+                  );
                 },
-
                 child: const Text('Go to Products'),
               ),
             )
