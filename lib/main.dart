@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage>
               builder: (context, child) {
                 return Transform.scale(
                   scale: _scaleanimation.value,
-                  child: SizedBox(
+                  child: const SizedBox(
                     width: 200,
                     height: 200,
                     child: Image(
