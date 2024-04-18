@@ -166,13 +166,6 @@ class Products extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 5),
-                          // Text(
-                          //   '${booksList[index].description}',
-                          //   style: const TextStyle(
-                          //     fontSize: 16,
-                          //   ),
-                          // ),
-                          // const SizedBox(height: 5),
                           Row(
                             children: [
                               SizedBox(height: 5),
