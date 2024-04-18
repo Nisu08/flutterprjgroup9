@@ -4,7 +4,6 @@ import 'book.dart';
 
 class ProductDetail extends StatefulWidget {
   final Book book;
-
   const ProductDetail({super.key, required this.book});
 
   @override
@@ -13,29 +12,11 @@ class ProductDetail extends StatefulWidget {
 
 class _ProductDetailState extends State<ProductDetail> with SingleTickerProviderStateMixin {
   int quantity = 1;
-  late AnimationController _animationCon;
-  late Animation<double> _scaleAnime;
+  bool _size = true;
+
+
 
   @override
-  void initState() {
-    super.initState();
-    _animationCon = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    );
-    _scaleAnime = Tween<double>(begin: 0.7, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationCon,
-        curve: Curves.easeInOut,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _animationCon.dispose();
-    super.dispose();
-  }
   void incrementQuantity() {
     setState(() {
       if (quantity < 10) quantity++;
@@ -69,25 +50,28 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
             child: Center(
               child: GestureDetector(
                 onTap: () {
-                  _animationCon.forward(from: 0.0);
+
+                  setState(() {
+                    _size = !_size;
+                  });
                 },
-                child: AnimatedBuilder(
-                  animation: _animationCon,
-                  builder: (context, child) {
-                    return Transform.scale(
-                      scale: _scaleAnime.value,
-                      child: Hero(
-                        tag: widget.book.image,
-                        child: Image.asset(
-                          "images/${widget.book.image}",
-                          width: 200,
-                          height: 300,
-                          fit: BoxFit.cover,
+                child:AnimatedContainer(
+                  duration: const Duration(seconds: 2),
+                  width: _size ? 200:225,
+                  child: Hero(
+                          tag: widget.book.image,
+                          child: Image.asset(
+                            "images/${widget.book.image}",
+                            width: 150,
+                            height: 300,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                ),
+
+
+
+                )
+
               ),
             ),
           ),
